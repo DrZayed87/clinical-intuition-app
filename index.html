@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -683,16 +684,31 @@
             color: #94a3b8;
         }
 
-        .text-blue { color: #60a5fa; }
-        .text-green { color: #10b981; }
-        .text-purple { color: #a78bfa; }
-        .text-orange { color: #f97316; }
-        .text-red { color: #ef4444; }
+        .text-blue {
+            color: #60a5fa;
+        }
+
+        .text-green {
+            color: #10b981;
+        }
+
+        .text-purple {
+            color: #a78bfa;
+        }
+
+        .text-orange {
+            color: #f97316;
+        }
+
+        .text-red {
+            color: #ef4444;
+        }
 
         @media (max-width: 1024px) {
             .comparison-grid {
                 grid-template-columns: 1fr;
             }
+
             .teaching-grid {
                 grid-template-columns: 1fr;
             }
@@ -702,23 +718,28 @@
             .tabs {
                 flex-direction: column;
             }
+
             .tab-button {
                 flex: 1;
                 min-width: auto;
             }
+
             .patient-banner {
                 flex-direction: column;
                 text-align: center;
             }
+
             .score-comparison {
                 justify-content: center;
             }
+
             .warning-grid {
                 grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <!-- Header -->
@@ -758,20 +779,21 @@
 
         <!-- Tabs -->
         <div class="tabs">
-            <button class="tab-button active" onclick="switchTab('ai')">🤖 AI Assessment (Raw)</button>
-            <button class="tab-button adjust" onclick="switchTab('adjust')">👨‍⚕️ Human Adjustment of AI</button>
-            <button class="tab-button soft" onclick="switchTab('soft')">👁️ Soft Signs (AI Blind)</button>
-            <button class="tab-button compare" onclick="switchTab('compare')">⚖️ Final Comparison</button>
+            <button class="tab-button active" onclick="switchTab('ai', this)">🤖 AI Assessment (Raw)</button>
+            <button class="tab-button adjust" onclick="switchTab('adjust', this)">👨‍⚕️ Human Adjustment of AI</button>
+            <button class="tab-button soft" onclick="switchTab('soft', this)">👁️ Soft Signs (AI Blind)</button>
+            <button class="tab-button compare" onclick="switchTab('compare', this)">⚖️ Final Comparison</button>
         </div>
 
         <!-- Tab Content -->
-        
+
         <!-- AI Tab -->
         <div id="ai" class="tab-content active">
             <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 32px;">
                 <div>
                     <h3 class="text-blue" style="margin: 0 0 8px; font-size: 22px;">AI Risk Algorithm Output</h3>
-                    <p style="margin: 0; color: #94a3b8;">Raw calculation from structured EHR data — no clinical context</p>
+                    <p style="margin: 0; color: #94a3b8;">Raw calculation from structured EHR data — no clinical context
+                    </p>
                 </div>
                 <div class="score-display" style="background: #fef2f2;">
                     <h4 style="color: #dc2626;">15/16</h4>
@@ -859,10 +881,13 @@
                         </div>
                     </div>
                     <div class="adjustment-options">
-                        <button class="adjustment-btn" onclick="updateScore('bp', 0)" style="background: #10b981; color: #fff;">[0] This IS his baseline</button>
-                        <button class="adjustment-btn" onclick="updateScore('bp', 1)">[1] Slightly elevated for him</button>
+                        <button class="adjustment-btn" onclick="updateScore('bp', 0)"
+                            style="background: #10b981; color: #fff;">[0] This IS his baseline</button>
+                        <button class="adjustment-btn" onclick="updateScore('bp', 1)">[1] Slightly elevated for
+                            him</button>
                         <button class="adjustment-btn" onclick="updateScore('bp', 2)">[2] Moderately concerning</button>
-                        <button class="adjustment-btn active" onclick="updateScore('bp', 3)" style="background: #f97316; color: #fff;">[3] AI is correct</button>
+                        <button class="adjustment-btn active" onclick="updateScore('bp', 3)"
+                            style="background: #f97316; color: #fff;">[3] AI is correct</button>
                         <button class="adjustment-btn" onclick="updateScore('bp', 4)">[4] Actually WORSE</button>
                     </div>
                 </div>
@@ -889,7 +914,8 @@
                         <button class="adjustment-btn" onclick="updateScore('er', 0)">[0] Visits were minor</button>
                         <button class="adjustment-btn" onclick="updateScore('er', 1)">[1] Access issue</button>
                         <button class="adjustment-btn" onclick="updateScore('er', 2)">[2] Mixed reasons</button>
-                        <button class="adjustment-btn active" onclick="updateScore('er', 4)" style="background: #f97316; color: #fff;">[4] AI is correct</button>
+                        <button class="adjustment-btn active" onclick="updateScore('er', 4)"
+                            style="background: #f97316; color: #fff;">[4] AI is correct</button>
                         <button class="adjustment-btn" onclick="updateScore('er', 5)">[5] Pattern is WORSE</button>
                     </div>
                 </div>
@@ -913,10 +939,13 @@
                         </div>
                     </div>
                     <div class="adjustment-options">
-                        <button class="adjustment-btn" onclick="updateScore('comorbid', 1)">[1] All well-controlled</button>
+                        <button class="adjustment-btn" onclick="updateScore('comorbid', 1)">[1] All
+                            well-controlled</button>
                         <button class="adjustment-btn" onclick="updateScore('comorbid', 2)">[2] Mostly stable</button>
-                        <button class="adjustment-btn active" onclick="updateScore('comorbid', 3)" style="background: #eab308; color: #000;">[3] AI is correct</button>
-                        <button class="adjustment-btn" onclick="updateScore('comorbid', 4)">[4] Interacting badly</button>
+                        <button class="adjustment-btn active" onclick="updateScore('comorbid', 3)"
+                            style="background: #eab308; color: #000;">[3] AI is correct</button>
+                        <button class="adjustment-btn" onclick="updateScore('comorbid', 4)">[4] Interacting
+                            badly</button>
                         <button class="adjustment-btn" onclick="updateScore('comorbid', 5)">[5] Decompensating</button>
                     </div>
                 </div>
@@ -940,12 +969,15 @@
                         </div>
                     </div>
                     <div class="adjustment-options">
-                        <button class="adjustment-btn" onclick="updateScore('adhere', 0)">[0] Intentional choice</button>
+                        <button class="adjustment-btn" onclick="updateScore('adhere', 0)">[0] Intentional
+                            choice</button>
                         <button class="adjustment-btn" onclick="updateScore('adhere', 1)">[1] Cost/access issue</button>
                         <button class="adjustment-btn" onclick="updateScore('adhere', 2)">[2] Side effects</button>
-                        <button class="adjustment-btn active" onclick="updateScore('adhere', 3)" style="background: #f97316; color: #fff;">[3] True non-compliance</button>
+                        <button class="adjustment-btn active" onclick="updateScore('adhere', 3)"
+                            style="background: #f97316; color: #fff;">[3] True non-compliance</button>
                         <button class="adjustment-btn" onclick="updateScore('adhere', 4)">[4] Cognitive decline</button>
-                        <button class="adjustment-btn" onclick="updateScore('adhere', 5)">[5] Depression/giving up</button>
+                        <button class="adjustment-btn" onclick="updateScore('adhere', 5)">[5] Depression/giving
+                            up</button>
                     </div>
                 </div>
 
@@ -968,10 +1000,14 @@
                         </div>
                     </div>
                     <div class="adjustment-options">
-                        <button class="adjustment-btn" onclick="updateScore('social', 0)">[0] Family visits daily</button>
-                        <button class="adjustment-btn" onclick="updateScore('social', 1)">[1] Neighbors check in</button>
-                        <button class="adjustment-btn active" onclick="updateScore('social', 2)" style="background: #eab308; color: #000;">[2] Truly isolated</button>
-                        <button class="adjustment-btn" onclick="updateScore('social', 3)">[3] Isolated AND declining</button>
+                        <button class="adjustment-btn" onclick="updateScore('social', 0)">[0] Family visits
+                            daily</button>
+                        <button class="adjustment-btn" onclick="updateScore('social', 1)">[1] Neighbors check
+                            in</button>
+                        <button class="adjustment-btn active" onclick="updateScore('social', 2)"
+                            style="background: #eab308; color: #000;">[2] Truly isolated</button>
+                        <button class="adjustment-btn" onclick="updateScore('social', 3)">[3] Isolated AND
+                            declining</button>
                         <button class="adjustment-btn" onclick="updateScore('social', 4)">[4] Unsafe living</button>
                     </div>
                 </div>
@@ -1002,10 +1038,12 @@
                             <span class="soft-variable-label">"Sick or Not Sick" Gestalt</span>
                             <span class="soft-variable-question">First 3 seconds — what do you see?</span>
                         </div>
-                        <div class="soft-score-badge" style="background: rgba(16, 185, 129, 0.2); color: #6ee7b7;">+<span id="soft-sick-score">0</span></div>
+                        <div class="soft-score-badge" style="background: rgba(16, 185, 129, 0.2); color: #6ee7b7;">
+                            +<span id="soft-sick-score">0</span></div>
                     </div>
                     <div class="soft-options">
-                        <button class="soft-option-btn active" onclick="updateSoftScore('sick', 0)" style="background: #059669; color: #fff;">0 Looks well</button>
+                        <button class="soft-option-btn active" onclick="updateSoftScore('sick', 0)"
+                            style="background: #059669; color: #fff;">0 Looks well</button>
                         <button class="soft-option-btn" onclick="updateSoftScore('sick', 1)">1 Slightly off</button>
                         <button class="soft-option-btn" onclick="updateSoftScore('sick', 2)">2 Unwell</button>
                         <button class="soft-option-btn" onclick="updateSoftScore('sick', 3)">3 Very sick</button>
@@ -1019,10 +1057,12 @@
                             <span class="soft-variable-label">Skin Assessment</span>
                             <span class="soft-variable-question">Color, sweating, perfusion?</span>
                         </div>
-                        <div class="soft-score-badge" style="background: rgba(16, 185, 129, 0.2); color: #6ee7b7;">+<span id="soft-skin-score">0</span></div>
+                        <div class="soft-score-badge" style="background: rgba(16, 185, 129, 0.2); color: #6ee7b7;">
+                            +<span id="soft-skin-score">0</span></div>
                     </div>
                     <div class="soft-options">
-                        <button class="soft-option-btn active" onclick="updateSoftScore('skin', 0)" style="background: #059669; color: #fff;">0 Normal</button>
+                        <button class="soft-option-btn active" onclick="updateSoftScore('skin', 0)"
+                            style="background: #059669; color: #fff;">0 Normal</button>
                         <button class="soft-option-btn" onclick="updateSoftScore('skin', 1)">1 Pale</button>
                         <button class="soft-option-btn" onclick="updateSoftScore('skin', 2)">2 Diaphoretic</button>
                         <button class="soft-option-btn" onclick="updateSoftScore('skin', 3)">3 Mottled</button>
@@ -1036,10 +1076,12 @@
                             <span class="soft-variable-label">Work of Breathing</span>
                             <span class="soft-variable-question">Effort and pattern?</span>
                         </div>
-                        <div class="soft-score-badge" style="background: rgba(16, 185, 129, 0.2); color: #6ee7b7;">+<span id="soft-breath-score">0</span></div>
+                        <div class="soft-score-badge" style="background: rgba(16, 185, 129, 0.2); color: #6ee7b7;">
+                            +<span id="soft-breath-score">0</span></div>
                     </div>
                     <div class="soft-options">
-                        <button class="soft-option-btn active" onclick="updateSoftScore('breath', 0)" style="background: #059669; color: #fff;">0 Easy</button>
+                        <button class="soft-option-btn active" onclick="updateSoftScore('breath', 0)"
+                            style="background: #059669; color: #fff;">0 Easy</button>
                         <button class="soft-option-btn" onclick="updateSoftScore('breath', 1)">1 Mild effort</button>
                         <button class="soft-option-btn" onclick="updateSoftScore('breath', 2)">2 Moderate</button>
                         <button class="soft-option-btn" onclick="updateSoftScore('breath', 3)">3 Severe</button>
@@ -1053,11 +1095,14 @@
                             <span class="soft-variable-label">Mental Status</span>
                             <span class="soft-variable-question">Is he himself cognitively?</span>
                         </div>
-                        <div class="soft-score-badge" style="background: rgba(16, 185, 129, 0.2); color: #6ee7b7;">+<span id="soft-mental-score">0</span></div>
+                        <div class="soft-score-badge" style="background: rgba(16, 185, 129, 0.2); color: #6ee7b7;">
+                            +<span id="soft-mental-score">0</span></div>
                     </div>
                     <div class="soft-options">
-                        <button class="soft-option-btn active" onclick="updateSoftScore('mental', 0)" style="background: #059669; color: #fff;">0 Alert, sharp</button>
-                        <button class="soft-option-btn" onclick="updateSoftScore('mental', 1)">1 Slow but oriented</button>
+                        <button class="soft-option-btn active" onclick="updateSoftScore('mental', 0)"
+                            style="background: #059669; color: #fff;">0 Alert, sharp</button>
+                        <button class="soft-option-btn" onclick="updateSoftScore('mental', 1)">1 Slow but
+                            oriented</button>
                         <button class="soft-option-btn" onclick="updateSoftScore('mental', 2)">2 Confused</button>
                         <button class="soft-option-btn" onclick="updateSoftScore('mental', 3)">3 Agitated</button>
                         <button class="soft-option-btn" onclick="updateSoftScore('mental', 4)">4 Obtunded</button>
@@ -1070,14 +1115,17 @@
                             <span class="soft-variable-label">Change from Baseline</span>
                             <span class="soft-variable-question">Compared to his usual state?</span>
                         </div>
-                        <div class="soft-score-badge" style="background: rgba(16, 185, 129, 0.2); color: #6ee7b7;">+<span id="soft-baseline-score">0</span></div>
+                        <div class="soft-score-badge" style="background: rgba(16, 185, 129, 0.2); color: #6ee7b7;">
+                            +<span id="soft-baseline-score">0</span></div>
                     </div>
                     <div class="soft-options">
-                        <button class="soft-option-btn active" onclick="updateSoftScore('baseline', 0)" style="background: #059669; color: #fff;">0 At baseline</button>
+                        <button class="soft-option-btn active" onclick="updateSoftScore('baseline', 0)"
+                            style="background: #059669; color: #fff;">0 At baseline</button>
                         <button class="soft-option-btn" onclick="updateSoftScore('baseline', 1)">1 Mild change</button>
                         <button class="soft-option-btn" onclick="updateSoftScore('baseline', 2)">2 Moderate</button>
                         <button class="soft-option-btn" onclick="updateSoftScore('baseline', 3)">3 Major change</button>
-                        <button class="soft-option-btn" onclick="updateSoftScore('baseline', 4)">4 Never like this</button>
+                        <button class="soft-option-btn" onclick="updateSoftScore('baseline', 4)">4 Never like
+                            this</button>
                     </div>
                 </div>
 
@@ -1087,10 +1135,12 @@
                             <span class="soft-variable-label">Your Gut Feeling</span>
                             <span class="soft-variable-question">What does your experience tell you?</span>
                         </div>
-                        <div class="soft-score-badge" style="background: rgba(16, 185, 129, 0.2); color: #6ee7b7;">+<span id="soft-gut-score">0</span></div>
+                        <div class="soft-score-badge" style="background: rgba(16, 185, 129, 0.2); color: #6ee7b7;">
+                            +<span id="soft-gut-score">0</span></div>
                     </div>
                     <div class="soft-options">
-                        <button class="soft-option-btn active" onclick="updateSoftScore('gut', 0)" style="background: #059669; color: #fff;">0 Comfortable</button>
+                        <button class="soft-option-btn active" onclick="updateSoftScore('gut', 0)"
+                            style="background: #059669; color: #fff;">0 Comfortable</button>
                         <button class="soft-option-btn" onclick="updateSoftScore('gut', 1)">1 Slight concern</button>
                         <button class="soft-option-btn" onclick="updateSoftScore('gut', 2)">2 Worried</button>
                         <button class="soft-option-btn" onclick="updateSoftScore('gut', 3)">3 Very worried</button>
@@ -1120,7 +1170,7 @@
                         <h3 class="comparison-title">AI Assessment</h3>
                         <p class="comparison-subtitle">Structured data only</p>
                     </div>
-                    
+
                     <div class="comparison-score" style="background: #fef2f2;">
                         <div class="comparison-score-value" style="color: #dc2626;">15</div>
                         <div class="comparison-score-label" style="color: #dc2626;">CRITICAL RISK</div>
@@ -1157,10 +1207,11 @@
                         <h3 class="comparison-title" style="color: #10b981;">Human Assessment</h3>
                         <p class="comparison-subtitle">Adjusted + Soft signs</p>
                     </div>
-                    
+
                     <div class="comparison-score" style="background: #fef2f2;">
                         <div class="comparison-score-value" id="compare-human-score" style="color: #dc2626;">15</div>
-                        <div class="comparison-score-label" id="compare-human-label" style="color: #dc2626;">CRITICAL RISK</div>
+                        <div class="comparison-score-label" id="compare-human-label" style="color: #dc2626;">CRITICAL
+                            RISK</div>
                     </div>
 
                     <div class="comparison-items">
@@ -1186,7 +1237,8 @@
                             <span id="comp-social" style="color: #a78bfa;">2</span>
                         </div>
                         <div class="comparison-item-section">
-                            <div style="margin-bottom: 8px; color: #10b981; font-weight: 600;">Soft Signs (AI Blind):</div>
+                            <div style="margin-bottom: 8px; color: #10b981; font-weight: 600;">Soft Signs (AI Blind):
+                            </div>
                             <div class="comparison-item">
                                 <span>"Sick or Not Sick"</span>
                                 <span style="color: #10b981;">+<span id="comp-soft-sick">0</span></span>
@@ -1217,13 +1269,16 @@
             </div>
 
             <!-- Interpretation -->
-            <div id="interpretation-box" class="interpretation-box" style="background: rgba(59, 130, 246, 0.15); border-color: #3b82f6;">
+            <div id="interpretation-box" class="interpretation-box"
+                style="background: rgba(59, 130, 246, 0.15); border-color: #3b82f6;">
                 <div class="interpretation-header">
                     <span class="interpretation-emoji" id="interp-emoji">✓</span>
-                    <h3 class="interpretation-title" id="interp-title" style="color: #3b82f6;">AI and Human Assessment Aligned</h3>
+                    <h3 class="interpretation-title" id="interp-title" style="color: #3b82f6;">AI and Human Assessment
+                        Aligned</h3>
                 </div>
                 <p class="interpretation-message" id="interp-message">
-                    Your clinical judgment aligns with the algorithm. Both structured data and bedside assessment point to a similar risk level.
+                    Your clinical judgment aligns with the algorithm. Both structured data and bedside assessment point
+                    to a similar risk level.
                 </p>
                 <div class="interpretation-action">
                     <strong id="interp-action-title" style="color: #3b82f6;">Recommended Action:</strong>
@@ -1237,7 +1292,8 @@
                 <div class="teaching-grid">
                     <div class="teaching-item">
                         <strong style="color: #60a5fa;">1. AI provides the scaffold</strong>
-                        <p>Algorithms ensure nothing is missed and provide consistent baseline assessment across all patients.</p>
+                        <p>Algorithms ensure nothing is missed and provide consistent baseline assessment across all
+                            patients.</p>
                     </div>
                     <div class="teaching-item">
                         <strong style="color: #a78bfa;">2. Humans provide context</strong>
@@ -1276,18 +1332,20 @@
             gut: 0
         };
 
-        function switchTab(tabName) {
+        function switchTab(tabName, clickedBtn) {
             // Hide all tabs
             const tabs = document.querySelectorAll('.tab-content');
             tabs.forEach(tab => tab.classList.remove('active'));
-            
+
             // Show selected tab
             document.getElementById(tabName).classList.add('active');
 
             // Update button states
             const buttons = document.querySelectorAll('.tab-button');
             buttons.forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
+            if (clickedBtn) {
+                clickedBtn.classList.add('active');
+            }
 
             // Update comparison tab
             if (tabName === 'compare') {
@@ -1326,7 +1384,7 @@
             const adjustedTotal = Object.values(scores).reduce((a, b) => a + b, 0);
             const softTotal = Object.values(softScores).reduce((a, b) => a + b, 0);
             const humanTotal = adjustedTotal + softTotal;
-            
+
             // Update banner scores
             document.querySelectorAll('.score-box.human .score-value')[0].textContent = humanTotal;
         }
@@ -1357,7 +1415,7 @@
             let riskLevel = 'LOW';
             let riskColor = '#16a34a';
             let riskBg = '#f0fdf4';
-            
+
             if (humanTotal >= 25) {
                 riskLevel = 'CRITICAL';
                 riskColor = '#dc2626';
@@ -1431,7 +1489,7 @@
         function resetApp() {
             scores = { bp: 3, er: 4, comorbid: 3, adhere: 3, social: 2 };
             softScores = { sick: 0, skin: 0, breath: 0, mental: 0, baseline: 0, gut: 0 };
-            
+
             document.getElementById('bp-score').textContent = '3';
             document.getElementById('er-score').textContent = '4';
             document.getElementById('comorbid-score').textContent = '3';
@@ -1439,12 +1497,12 @@
             document.getElementById('social-score').textContent = '2';
             document.getElementById('adjusted-total').textContent = '15';
             document.getElementById('adjusted-display').textContent = '15';
-            
+
             Object.keys(softScores).forEach(key => {
                 document.getElementById('soft-' + key + '-score').textContent = '0';
             });
             document.getElementById('soft-total').textContent = '+0';
-            
+
             updateScoreComparison();
             switchTab('ai');
         }
@@ -1454,4 +1512,5 @@
         updateSoftTotal();
     </script>
 </body>
+
 </html>
