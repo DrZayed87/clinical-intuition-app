@@ -772,10 +772,10 @@
 
         <!-- Tabs -->
         <div class="tabs">
-            <button class="tab-button active" onclick="switchTab('ai')">🤖 AI Assessment (Raw)</button>
-            <button class="tab-button adjust" onclick="switchTab('adjust')">👨‍⚕️ Human Adjustment of AI</button>
-            <button class="tab-button soft" onclick="switchTab('soft')">👁️ Soft Signs (AI Blind)</button>
-            <button class="tab-button compare" onclick="switchTab('compare')">⚖️ Final Comparison</button>
+            <button class="tab-button active" data-tab="ai" onclick="switchTab('ai')">🤖 AI Assessment (Raw)</button>
+            <button class="tab-button adjust" data-tab="adjust" onclick="switchTab('adjust')">👨‍⚕️ Human Adjustment of AI</button>
+            <button class="tab-button soft" data-tab="soft" onclick="switchTab('soft')">👁️ Soft Signs (AI Blind)</button>
+            <button class="tab-button compare" data-tab="compare" onclick="switchTab('compare')">⚖️ Final Comparison</button>
         </div>
 
         <!-- Tab Content -->
@@ -1291,24 +1291,27 @@
         };
 
         function switchTab(tabName) {
-            // Hide all tabs
+            // Hide all tab content
             const tabs = document.querySelectorAll('.tab-content');
             tabs.forEach(tab => tab.classList.remove('active'));
             
-            // Show selected tab
-            document.getElementById(tabName).classList.add('active');
+            // Show selected tab content
+            const targetTab = document.getElementById(tabName);
+            if (targetTab) {
+                targetTab.classList.add('active');
+            }
 
-            // Update button states - find all buttons and determine which to highlight
+            // Update button states - remove active from all
             const buttons = document.querySelectorAll('.tab-button');
             buttons.forEach(btn => btn.classList.remove('active'));
             
-            // Find and activate the correct button
-            const tabMap = { 'ai': 0, 'adjust': 1, 'soft': 2, 'compare': 3 };
-            if (buttons[tabMap[tabName]]) {
-                buttons[tabMap[tabName]].classList.add('active');
+            // Find the button with matching data-tab and activate it
+            const targetButton = document.querySelector(`.tab-button[data-tab="${tabName}"]`);
+            if (targetButton) {
+                targetButton.classList.add('active');
             }
 
-            // Update comparison tab
+            // Update comparison tab data when navigating to it
             if (tabName === 'compare') {
                 updateComparisonTab();
             }
