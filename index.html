@@ -779,10 +779,10 @@
 
         <!-- Tabs -->
         <div class="tabs">
-            <button class="tab-button active" onclick="switchTab('ai', this)">🤖 AI Assessment (Raw)</button>
-            <button class="tab-button adjust" onclick="switchTab('adjust', this)">👨‍⚕️ Human Adjustment of AI</button>
-            <button class="tab-button soft" onclick="switchTab('soft', this)">👁️ Soft Signs (AI Blind)</button>
-            <button class="tab-button compare" onclick="switchTab('compare', this)">⚖️ Final Comparison</button>
+            <button class="tab-button active" onclick="switchTab('ai')">🤖 AI Assessment (Raw)</button>
+            <button class="tab-button adjust" onclick="switchTab('adjust')">👨‍⚕️ Human Adjustment of AI</button>
+            <button class="tab-button soft" onclick="switchTab('soft')">👁️ Soft Signs (AI Blind)</button>
+            <button class="tab-button compare" onclick="switchTab('compare')">⚖️ Final Comparison</button>
         </div>
 
         <!-- Tab Content -->
@@ -1332,7 +1332,7 @@
             gut: 0
         };
 
-        function switchTab(tabName, clickedBtn) {
+        function switchTab(tabName) {
             // Hide all tabs
             const tabs = document.querySelectorAll('.tab-content');
             tabs.forEach(tab => tab.classList.remove('active'));
@@ -1340,11 +1340,15 @@
             // Show selected tab
             document.getElementById(tabName).classList.add('active');
 
-            // Update button states
+            // Update button states - find the correct button based on tab name
             const buttons = document.querySelectorAll('.tab-button');
             buttons.forEach(btn => btn.classList.remove('active'));
-            if (clickedBtn) {
-                clickedBtn.classList.add('active');
+
+            // Map tab names to button indices
+            const tabMap = { 'ai': 0, 'adjust': 1, 'soft': 2, 'compare': 3 };
+            const buttonIndex = tabMap[tabName];
+            if (buttonIndex !== undefined && buttons[buttonIndex]) {
+                buttons[buttonIndex].classList.add('active');
             }
 
             // Update comparison tab
